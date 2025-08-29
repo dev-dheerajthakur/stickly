@@ -7,6 +7,7 @@ import { IconSymbol } from "@/src/components/ui/IconSymbol";
 import TabBarBackground from "@/src/components/ui/TabBarBackground";
 import { Colors, g } from "@/src/constants/Colors";
 import { useColorScheme } from "@/src/hooks/useColorScheme";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -24,7 +25,8 @@ export default function TabLayout() {
             position: "absolute",
           },
           default: {
-            backgroundColor: g[colorScheme ?? "light"].bg9,
+            backgroundColor: g[colorScheme ?? "light"].backgroundDarker,
+            display: 'none'
           },
         }),
       }}
@@ -39,11 +41,12 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="update"
         options={{
-          title: "Explore",
+          title: "Update",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+            // <IconSymbol size={28} name="house.fill" color={color} />
+            <MaterialIcons color={color} size={28} name='trending-up' />
           ),
         }}
       />

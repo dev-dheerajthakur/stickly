@@ -36,11 +36,11 @@ export default function RootLayout() {
 
   return (
     <>
-      <FirstScreenFilter
-        loaded={loaded}
-        isAuthenticated={isAuthenticated}
-        colorScheme={colorScheme}
-      />
+        <FirstScreenFilter
+          loaded={loaded}
+          isAuthenticated={isAuthenticated}
+          colorScheme={colorScheme}
+        />
 
       <Toast position="bottom" swipeable />
     </>

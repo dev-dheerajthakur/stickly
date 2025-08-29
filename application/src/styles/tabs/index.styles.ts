@@ -6,32 +6,18 @@ export default function indexStyles() {
   return StyleSheet.create({
     container: {
       flex: 1,
-      // backgroundColor: g[theme].bg10,
-
       backgroundColor: "#E0E0E0",
     },
-    neumorphicBox: {
-      width: 120,
-      height: 120,
-      borderRadius: 20,
-      backgroundColor: "#E0E0E0",
-
-      shadowColor: "#fff",
-      shadowOffset: { width: -6, height: -6 },
-      shadowOpacity: 1,
-      shadowRadius: 6,
-
-      elevation: 6, // Android
+    text: {
+      color: g[theme].text,
     },
-    gradient: {
+    safeAreaContainer: {
+      paddingHorizontal: 16,
+      paddingTop: 12,
       flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
     },
-    title: {
-      fontSize: 24,
-      fontWeight: "bold",
-      // color: g[theme].text,
-    },
+    scrollViewContainer: {
+      flex: 1,
+    }
   });
 }

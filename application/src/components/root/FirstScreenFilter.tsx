@@ -52,6 +52,7 @@ function HomeScreen({ colorScheme }: { colorScheme: ColorSchemeName }) {
         >
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
+          <Stack.Screen name="oneToOneChat" />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
