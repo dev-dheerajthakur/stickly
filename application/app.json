@@ -1,5 +1,8 @@
 {
   "expo": {
+    "splash": {
+      "backgroundColor": "#000"
+    },
     "name": "stickly",
     "slug": "stickly",
     "version": "1.0.0",

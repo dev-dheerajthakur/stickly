@@ -2,9 +2,10 @@ import { FlatList, Image, Pressable, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import chatsStyles from "./chats.css";
 import getAllChats, { Chat } from "@/src/apis/chats/get-all-chats";
-import { router } from "expo-router";
+import { router, useNavigation } from "expo-router";
 
 function ChatItem({ chat }: { chat: Chat }) {
+  const [navigating, setNavigating] = useState(false);
   const styles = chatsStyles();
   return (
     <View style={styles.chatItem}>
@@ -22,8 +23,14 @@ function ChatItem({ chat }: { chat: Chat }) {
       </Pressable>
       <Pressable
         onPress={() => {
+          if (navigating) return;
+          setNavigating(true);
           // navigate("/oneToOneChat/1234", { name: "dheeraj" });
-          router.push({ pathname: "/oneToOneChat", params: { id: "2343", name: "dheeraj" } });
+          router.push({
+            pathname: "/oneToOneChat",
+            params: { id: "2343", name: "dheeraj" },
+          });
+          setTimeout(() => setNavigating(false), 1000);
         }}
         style={({ pressed }) => [
           {

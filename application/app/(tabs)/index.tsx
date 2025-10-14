@@ -21,9 +21,9 @@ export default function index() {
     <LinearGradient>
       <SafeAreaView style={styles.safeAreaContainer}>
         <Header title="Messages" />
-          <SeachBar />
-          <Chats />
-          <MoreChats />
+        <SeachBar />
+        <Chats />
+        <MoreChats />
       </SafeAreaView>
     </LinearGradient>
   );

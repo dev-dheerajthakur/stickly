@@ -48,11 +48,21 @@ function HomeScreen({ colorScheme }: { colorScheme: ColorSchemeName }) {
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack
           initialRouteName={"(tabs)"}
-          screenOptions={{ headerShown: false }}
+          screenOptions={{
+            headerShown: false,
+            contentStyle: { backgroundColor: "#000" }, // prevent white flash
+            gestureEnabled: true,
+            gestureDirection: "horizontal",
+            animation: "slide_from_right",
+            animationTypeForReplace: "push",
+            animationDuration: 300,
+            presentation: "transparentModal", // keeps the old screen fixed
+          }}
         >
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
           <Stack.Screen name="oneToOneChat" />
+          <Stack.Screen name="newScreen" />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
@@ -78,4 +88,3 @@ export default function FirstScreenFilter({
   );
 }
 
-const styles = StyleSheet.create({});

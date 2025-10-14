@@ -17,7 +17,7 @@ export default function chatStyle() {
     input: {
       paddingVertical: 16,
       color: g[theme].text,
-      flex: 1
+      flex: 1,
     }, 
     inputArea: {
       flexDirection: 'row',
@@ -28,6 +28,7 @@ export default function chatStyle() {
       flex: 1,
       backgroundColor: g[theme].backgroundDarker,
       borderRadius: 100,
+      paddingHorizontal: 20
     },
     voiceIcon: {
       height: 50,
