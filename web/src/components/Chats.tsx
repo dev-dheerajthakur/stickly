@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles/chats.module.css'
 import Header from './chat/Header'
 import ChatContainer from './chat/ChatContainer'
@@ -7,7 +7,6 @@ import ChatContainer from './chat/ChatContainer'
 export default function Chats() {
 
     const [viewportHeight, setViewportHeight] = useState("100dvh");
-    const messageReference = useRef<HTMLDivElement>(null);
   
     // Handle viewport height changes for mobile keyboard
     useEffect(() => {
@@ -29,8 +28,8 @@ export default function Chats() {
 
 
   return (
-    <div className={styles.container} style={{height: viewportHeight}}>
-      <Header />
+    <div style={{height: viewportHeight}} className={styles.container}>
+      <Header name="Dheeraj Thakur" status="online" />
       <ChatContainer />
     </div>
   )

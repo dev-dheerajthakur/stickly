@@ -45,7 +45,6 @@ export default function page() {
         </form>
       </dialog>
       <button className={styles.dialogButton} onClick={toggleDialog}>Create Room</button>
-      <Link href="/room/1" className={styles.link}>Go to Room 1</Link>
       <AllChats />
     </div>
   )

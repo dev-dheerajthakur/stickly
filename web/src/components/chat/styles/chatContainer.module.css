@@ -22,28 +22,25 @@
   color: black;
   font-weight: 700;
   height: 50px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
 }
 .input:focus {
   outline: none; /* or your custom outline */
   transition: none; /* Remove any transitions on focus */
 }
-
-.input {
-  transition: none; /* Remove transitions entirely if needed */
+.input::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
-.sendButton{
+.sendButton {
   padding: 10px 20px;
 }
-
-.messages{
-  /* background: #422164; */
+.messages {
   display: flex;
   flex-direction: column;
-  /* height: calc(100dvh - 120px); */
   flex: 1;
-  /* justify-content: flex-end; */
   padding-bottom: 10px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 
@@ -60,7 +57,6 @@
   background: #5f9ea007;
   max-width: 80%;
   width: max-content;
-  
 }
 
 .yourMessage {
@@ -69,7 +65,7 @@
 .otherMessage {
   align-self: flex-start;
 }
-.messageContent{
+.messageContent {
   white-space: pre-wrap;
   font-size: medium;
 }

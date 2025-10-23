@@ -1,8 +1,9 @@
 .container {
   flex-direction: column;
-  background: #be686844;
+  /* background: #be686844; */
   width: 400px;
-  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
 }
 @media screen and (max-width: 768px) {
   .container {
@@ -16,8 +17,11 @@
   text-align: center;
   border: 1px solid var(--foreground);
   border-radius: 50px;
-  padding: 0 10px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
   margin: 10px;
+  height: 40px;
 }
 .searchInput {
   width: 90%;
@@ -26,4 +30,53 @@
   border: none;
   color: var(--foreground);
   outline: none;
+}
+
+.chatsList {
+  height: calc(100dvh - 60px);
+  overflow: auto;
+  padding-bottom: 20px;
+}
+
+.chatItem {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+   -webkit-tap-highlight-color: transparent; /* removes blue tap flash */
+}
+.profilePicture {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  margin: 10px;
+}
+.chatInfo {
+  display: block;
+  flex-direction: column;
+  max-width: calc(55%);
+  overflow: hidden;
+}
+.chatName {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--foreground);
+  opacity: 0.9;
+}
+.lastMessage {
+  font-size: 12px;
+  color: var(--foreground);
+  opacity: 0.6;
+  margin-top: 5px;
+  max-width: calc(100%);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.timestamp {
+  font-size: 10px;
+  color: var(--foreground);
+  opacity: 0.6;
+  margin-left: auto;
+  margin-right: 10px;
 }

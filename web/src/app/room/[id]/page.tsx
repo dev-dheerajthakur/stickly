@@ -9,7 +9,6 @@ export default async function page() {
   return (
     <div className={styles.container}>
       <AllChats display="hideFromMobile" />
-      {/* <Link href="/" className={styles.link}>Go to Home</Link> */}
       <Chats />
     </div>
   )
