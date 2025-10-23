@@ -1,19 +1,47 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles/chatContainer.module.css";
 import { messages } from "@/data/api";
 
 export default function ChatContainer() {
   const [inputValue, setInputValue] = useState("");
   const [messageArray, setMessageArray] = useState(messages);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [viewportHeight, setViewportHeight] = useState("100dvh");
+  const messageReference = useRef<HTMLDivElement>(null);
 
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+  // Handle viewport height changes for mobile keyboard
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.visualViewport) {
+        setViewportHeight(`${window.visualViewport.height}px`);
+      }
+    };
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", handleResize);
+      handleResize();
+    }
+
+    return () => {
+      window.visualViewport?.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Auto-scroll to bottom when messages change
+  useEffect(() => {
+    if (messageReference.current) {
+      messageReference.current.scrollTop =
+        messageReference.current.scrollHeight;
+    }
+  }, [messageArray]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(e.target.value);
-  }
+  };
 
-  function handleSendMessage(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  const handleSendMessage = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    
     if (inputValue.trim()) {
       setMessageArray([
         ...messageArray,
@@ -27,58 +55,50 @@ export default function ChatContainer() {
           }),
         },
       ]);
-      // Send the message
       setInputValue("");
     }
-
-    inputRef.current?.focus();
-  }
-
-  function handleIncomingMessage() {}
+  };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.messages}>
-        {messageArray.map((msg) => {
-          return (
-            <div
-              key={msg.id}
-              className={`${styles.message} ${
-                msg.sender === "You" ? styles.yourMessage : styles.otherMessage
-              }`}
-            >
-              {/* <p className={styles.messageSender}>{msg.sender}</p> */}
-              <p className={styles.messageContent}>{msg.content}</p>
-              <p className={styles.messageTimestamp}>{msg.timestamp}</p>
-            </div>
-          );
-        })}
+    <div
+      className={styles.container}
+      style={{ height: `calc(${viewportHeight} - 70px)` }}
+    >
+      <div className={styles.messages} ref={messageReference} onMouseDown={(e)=>{e.preventDefault()}}>
+        {messageArray.map((msg) => (
+          <div
+            key={msg.id}
+            className={`${styles.message} ${
+              msg.sender === "You" ? styles.yourMessage : styles.otherMessage
+            }`}
+          >
+            <pre className={styles.messageContent}>{msg.content}</pre>
+            <p className={styles.messageTimestamp}>{msg.timestamp}</p>
+          </div>
+        ))}
       </div>
-      <div>
-        <form
-          data-gramm="false"
-          data-lpignore="true" // 🧠 Tells LastPass/Chrome to ignore it
-          data-form-type="other" // 🧠 Helps avoid password detection
+
+      <form
+        data-gramm="false"
+        data-lpignore="true"
+        data-form-type="other"
+        autoComplete="none"
+        className={styles.form}
+        onSubmit={handleSendMessage}
+      >
+        <textarea
+          value={inputValue}
+          onChange={handleInputChange}
+          spellCheck={false}
           autoComplete="none"
-          className={styles.form}
-          onSubmit={handleSendMessage}
-        >
-          <input
-            ref={inputRef}
-            value={inputValue}
-            onChange={handleInputChange}
-            spellCheck={false}
-            autoComplete="none"
-            type="text"
-            className={styles.input}
-            placeholder="Type a message...."
-            data-form-type="other" // 🧠 Important for Android Autofill
-          />
-          <button type="submit" className={styles.sendButton}>
-            Send
-          </button>
-        </form>
-      </div>
+          autoCorrect="none"
+          className={styles.input}
+          placeholder="Type a message...."
+        />
+        <button onMouseDown={(e)=>{e.preventDefault()}} type="submit" className={styles.sendButton}>
+          Send
+        </button>
+      </form>
     </div>
   );
 }
