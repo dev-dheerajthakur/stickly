@@ -7,6 +7,10 @@
   justify-content: space-between;
   overflow-y: auto;
 }
+
+.form {
+  display: flex;
+}
 .input {
   width: 100%;
   padding: 20px 15px;
@@ -16,6 +20,9 @@
   color: black;
   font-weight: 700;
   height: 50px;
+}
+.sendButton{
+  padding: 10px 20px;
 }
 
 .messages{
