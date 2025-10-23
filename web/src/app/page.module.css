@@ -1,0 +1,55 @@
+.link {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+.container {
+  height: 100dvh;
+}
+
+.dialogButton {
+  padding: 10px;
+  background: #000;
+}
+
+.dialog {
+  background: #0d12147e;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  border-radius: 10px;
+  border-color: #1f3138;
+  backdrop-filter: blur(3px);
+  justify-content: center;
+  flex-direction: column;
+  padding: 60px;
+}
+
+.dialogContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: inherit;
+}
+.label {
+  display: block;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+
+.input {
+  padding: 10px 15px;
+  border: none;
+  background-color: #1f3138;
+  border-radius: 20px;
+  display: block;
+}
+
+.submitButton {
+  padding: 10px 20px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.buttonContainer {
+  align-self: flex-end;
+}

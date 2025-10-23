@@ -1,0 +1,15 @@
+.link {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+.container {
+  display: flex;
+  background: rgb(34, 31, 31);
+  height: 100dvh;
+}
+@media screen and (min-width: 1250px) {
+  .container {
+    height: calc(100dvh - 2rem);
+  }
+  
+}

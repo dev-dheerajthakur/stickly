@@ -1,0 +1,29 @@
+.container {
+  flex-direction: column;
+  background: #be686844;
+  width: 400px;
+  height: 100%;
+}
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+  .hideFromMobile{
+    display: none;
+  }
+}
+.searchBar {
+  text-align: center;
+  border: 1px solid var(--foreground);
+  border-radius: 50px;
+  padding: 0 10px;
+  margin: 10px;
+}
+.searchInput {
+  width: 90%;
+  padding: 8px;
+  background: none;
+  border: none;
+  color: var(--foreground);
+  outline: none;
+}
