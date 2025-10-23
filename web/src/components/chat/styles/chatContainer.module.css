@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: space-between;
   overflow-y: auto;
-  /* height: calc(100dvh - 70px); */
+  height: calc(100dvh - 70px);
   overflow: hidden;
 }
 

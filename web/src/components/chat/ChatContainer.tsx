@@ -6,26 +6,7 @@ import { messages } from "@/data/api";
 export default function ChatContainer() {
   const [inputValue, setInputValue] = useState("");
   const [messageArray, setMessageArray] = useState(messages);
-  const [viewportHeight, setViewportHeight] = useState("100dvh");
   const messageReference = useRef<HTMLDivElement>(null);
-
-  // Handle viewport height changes for mobile keyboard
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.visualViewport) {
-        setViewportHeight(`${window.visualViewport.height}px`);
-      }
-    };
-
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", handleResize);
-      handleResize();
-    }
-
-    return () => {
-      window.visualViewport?.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   // Auto-scroll to bottom when messages change
   useEffect(() => {
@@ -62,7 +43,7 @@ export default function ChatContainer() {
   return (
     <div
       className={styles.container}
-      style={{ height: `calc(${viewportHeight} - 70px)` }}
+      // style={{ height: `calc(${viewportHeight} - 70px)` }}
     >
       <div className={styles.messages} ref={messageReference} onMouseDown={(e)=>{e.preventDefault()}}>
         {messageArray.map((msg) => (
@@ -102,3 +83,6 @@ export default function ChatContainer() {
     </div>
   );
 }
+
+
+
