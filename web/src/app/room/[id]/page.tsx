@@ -32,7 +32,7 @@ export default function ChatClient() {
   const room = "general";
 
   useEffect(() => {
-    const newSocket = io("http://10.144.77.6:5500", {
+    const newSocket = io("https://stickly-server.onrender.com/", {
       transports: ["websocket"],
     });
     setSocket(newSocket);
