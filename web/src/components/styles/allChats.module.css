@@ -1,7 +1,7 @@
 .container {
   flex-direction: column;
   /* background: #be686844; */
-  width: 400px;
+  width: 500px;
   height: 100dvh;
   overflow: hidden;
 }
@@ -36,6 +36,11 @@
   height: calc(100dvh - 60px);
   overflow: auto;
   padding-bottom: 20px;
+}
+@media screen and (min-width: 768px) {
+  .chatsList {
+    height: calc(100dvh - 100px);
+  }
 }
 
 .chatItem {

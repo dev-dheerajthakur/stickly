@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react'
 import styles from './styles/chats.module.css'
 import Header from './chat/Header'
 import ChatContainer from './chat/ChatContainer'
+import { messages as messagesType } from "@/data/api";
 
-export default function Chats() {
+export default function Chats({messages, sendMessage}: {messages: typeof messagesType, sendMessage: (msg: typeof messagesType[0]) => void}) {
 
     const [viewportHeight, setViewportHeight] = useState("100dvh");
   
@@ -30,7 +31,7 @@ export default function Chats() {
   return (
     <div style={{height: viewportHeight}} className={styles.container}>
       <Header name="Dheeraj Thakur" status="online" />
-      <ChatContainer />
+      <ChatContainer messages={messages} sendMessage={sendMessage} />
     </div>
   )
 }

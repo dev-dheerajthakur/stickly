@@ -1,12 +1,22 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles/chatContainer.module.css";
-import { messages } from "@/data/api";
+import { messages as messagesType } from "@/data/api";
 
-export default function ChatContainer() {
+export default function ChatContainer({messages, sendMessage}: {messages: typeof messagesType, sendMessage: (msg: typeof messagesType[0]) => void}) {
   const [inputValue, setInputValue] = useState("");
-  const [messageArray, setMessageArray] = useState(messages);
+  // const [messageArray, setMessageArray] = useState(messages);
+  
+  const [username, setUsername] = useState("Anonymous");
   const messageReference = useRef<HTMLDivElement>(null);
+
+  // Load username safely (only in client)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("username") || "Anonymous";
+      setUsername(saved);
+    }
+  }, []);
 
   // Auto-scroll to bottom when messages change
   useEffect(() => {
@@ -14,7 +24,8 @@ export default function ChatContainer() {
       messageReference.current.scrollTop =
         messageReference.current.scrollHeight;
     }
-  }, [messageArray]);
+    // console.log("Messages updated:", messages);
+  }, [messages]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(e.target.value);
@@ -24,18 +35,15 @@ export default function ChatContainer() {
     e?.preventDefault();
     
     if (inputValue.trim()) {
-      setMessageArray([
-        ...messageArray,
-        {
-          id: messageArray.length + 1,
-          sender: "You",
+      sendMessage({
+          id: messages.length + 1,
+          sender: username,
           content: inputValue.trim(),
           timestamp: new Date().toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
           }),
-        },
-      ]);
+        })
       setInputValue("");
     }
   };
@@ -46,11 +54,11 @@ export default function ChatContainer() {
       // style={{ height: `calc(${viewportHeight} - 70px)` }}
     >
       <div className={styles.messages} ref={messageReference} onMouseDown={(e)=>{e.preventDefault()}}>
-        {messageArray.map((msg) => (
+        {messages.map((msg) => (
           <div
             key={msg.id}
             className={`${styles.message} ${
-              msg.sender === "You" ? styles.yourMessage : styles.otherMessage
+              msg.sender === username ? styles.yourMessage : styles.otherMessage
             }`}
           >
             <pre className={styles.messageContent}>{msg.content}</pre>
