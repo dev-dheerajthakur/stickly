@@ -21,7 +21,7 @@ import {
 import { Server, Socket } from 'socket.io';
 import { ChatService } from './chat.service';
 
-@WebSocketGateway(5500, {
+@WebSocketGateway( {
   cors: {
     origin: '*', // frontend domain or '*'
   },
