@@ -24,7 +24,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   
-  const h = headers();
+  const h = await headers();
 
   const ip =
     h.get("x-forwarded-for") ||
