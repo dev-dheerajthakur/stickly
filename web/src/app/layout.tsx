@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -22,9 +23,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
+  const h = headers();
+
+  const ip =
+    h.get("x-forwarded-for") ||
+    h.get("x-real-ip") ||
+    "unknown";
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <div>ip: ${ip}</div>
         {children}
       </body>
     </html>
